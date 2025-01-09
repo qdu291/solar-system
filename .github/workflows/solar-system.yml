@@ -58,11 +58,12 @@ jobs:
         - name: install dependencies
           run: npm install
 
-        - name: unit test
-          run: npm coverage
+        - name: code coverage
+          run: npm run coverage
 
-        - name: archive test result
+        - name: archive coverage result
           uses: actions/upload-artifact@v3
           with:
-            name: test-result
-            path: test-results.xml
+            name: coverage-result
+            path: coverage
+            retention-day: 5
