@@ -42,3 +42,27 @@ jobs:
           with:
             name: test-result
             path: test-results.xml
+    
+    code-coverage:
+        name: Code coverage
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v4
+        
+        - name: install nodejs
+          uses: actions/setup-node@v3
+          with:
+            node-version: 18
+        
+        - name: install dependencies
+          run: npm install
+
+        - name: unit test
+          run: npm coverage
+
+        - name: archive test result
+          uses: actions/upload-artifact@v3
+          with:
+            name: test-result
+            path: test-results.xml
